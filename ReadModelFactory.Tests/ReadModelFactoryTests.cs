@@ -27,7 +27,7 @@ namespace ReadModelFactory.Tests
 
 		private async Task<TReadModel> Get<TReadModel, TReadModelArgs>(TReadModelArgs readModelArgs)
 		{
-			return await new ReadModelFactory(CreateCatalogue())
+			return await new ReadModelFactory(CreateCatalogue(), _serviceProvider)
 				.Get<TReadModel, TReadModelArgs>(readModelArgs);
 		}
 
@@ -37,7 +37,7 @@ namespace ReadModelFactory.Tests
 			{
 				new ReadModelCatalogueItem(typeof(TestReadModel), typeof(TestReadModelProvider))
 			};
-			return new ReadModelCatalogue(catalogueItems, _serviceProvider);
+			return new ReadModelCatalogue(catalogueItems);
 		}
 
 		private IServiceProvider CreateServiceProvider()

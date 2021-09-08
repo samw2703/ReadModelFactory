@@ -30,8 +30,8 @@ namespace ReadModelFactory.Tests
 
 		private async Task<ReadModelProvider<TReadModel, TArgs>> GetProvider<TReadModel, TArgs>()
 		{
-			return new ReadModelCatalogue(CreateCatalogueItems(), CreateServiceProvider())
-				.GetProvider<TReadModel, TArgs>();
+			return new ReadModelCatalogue(CreateCatalogueItems())
+				.GetProvider<TReadModel, TArgs>(CreateServiceProvider());
 		}
 
 		private IServiceProvider CreateServiceProvider()
