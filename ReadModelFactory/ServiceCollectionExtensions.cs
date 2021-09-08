@@ -6,7 +6,7 @@ namespace ReadModelFactory
 	{
 		public static void AddReadModelFactory(this IServiceCollection serviceCollection)
 		{
-			serviceCollection.AddSingleton<IReadModelFactory>()
+			serviceCollection.AddSingleton<IReadModelFactory, ReadModelFactory>();
 		}
 	}
 }
