@@ -4,16 +4,25 @@ namespace ReadModelFactory
 {
 	internal class ReadModelFactory : IReadModelFactory
 	{
-		public Task<TReadModel> Get<TReadModel, TArgs>(TArgs args)
+		private readonly ReadModelCatalogue _readModelCatalogue;
+
+		public ReadModelFactory(ReadModelCatalogue readModelCatalogue)
 		{
-			throw new System.NotImplementedException();
+			_readModelCatalogue = readModelCatalogue;
+		}
+
+		public async Task<TReadModel> Get<TReadModel, TArgs>(TArgs args)
+		{
+			return await _readModelCatalogue
+				.GetProvider<TReadModel, TArgs>()
+				.Get(args);
 		}
 
 		public async Task<TReadModel> Get<TReadModel>()
 			=> await Get<TReadModel, NoReadModelArgs>(new NoReadModelArgs());
 	}
 
-	internal class NoReadModelArgs
+	public class NoReadModelArgs
 	{
 	}
 }
