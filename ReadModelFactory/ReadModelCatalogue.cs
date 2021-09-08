@@ -17,9 +17,9 @@ namespace ReadModelFactory
 
 		public ReadModelProvider<TReadModel, TArgs> GetProvider<TReadModel, TArgs>()
 		{
-			var catalogueItem = _items.SingleOrDefault(x => x.ArgsType == typeof(TArgs));
+			var catalogueItem = _items.SingleOrDefault(x => x.ReadModelType == typeof(TReadModel));
 			if (catalogueItem == null)
-				throw new NoReadModelProvider(typeof(TArgs));
+				throw new NoReadModelProvider(typeof(TReadModel));
 
 			var provider = _serviceProvider.GetService(catalogueItem.ProviderType) as ReadModelProvider<TReadModel, TArgs>;
 			if (provider == null)
