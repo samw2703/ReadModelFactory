@@ -30,7 +30,9 @@ namespace ReadModelFactory
 		{
 			var readModelProviderType = GetInheritanceTree(type).Single(IsReadModelProvider);
 
-			return new ReadModelCatalogueItem(readModelProviderType.GetGenericArguments().First(), type);
+			return new ReadModelCatalogueItem(readModelProviderType.GetGenericArguments()[1], 
+				readModelProviderType.GetGenericArguments().First(), 
+				type);
 		}
 
 		private bool InheritsFromReadModelProvider(Type type)

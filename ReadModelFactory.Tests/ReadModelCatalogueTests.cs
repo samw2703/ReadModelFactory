@@ -9,19 +9,13 @@ namespace ReadModelFactory.Tests
 	public class ReadModelCatalogueTests
 	{
 		[Test]
-		public async Task GetProvider_NoProviderExistsForReadModelType_ThrowsNoReadModelProvider()
+		public async Task GetProvider_NoProviderExistsForReadModelArgsTypeCombo_ThrowsNoReadModelProvider()
 		{
 			Assert.ThrowsAsync<NoReadModelProvider>(async () => await GetProvider<object, NoReadModelArgs>());
 		}
 
 		[Test]
-		public async Task GetProvider_ProviderExistsButDoesNotAcceptSpecifiedArgsType_ThrowsReadModelArgsMismatch()
-		{
-			Assert.ThrowsAsync<ReadModelArgsMismatch>(async () => await GetProvider<TestReadModel, NoReadModelArgs>());
-		}
-
-		[Test]
-		public async Task GetProvider_ProviderExistsAndIsOfCorrectType_ReturnsProvider()
+		public async Task GetProvider_ProviderExistsForReadModelArgsTypeCombo_ReturnsProvider()
 		{
 			var provider = await GetProvider<TestReadModel, TestArgs>();
 
@@ -45,7 +39,7 @@ namespace ReadModelFactory.Tests
 		{
 			return new()
 			{
-				new(typeof(TestReadModel), typeof(TestReadModelProvider))
+				new(typeof(TestArgs), typeof(TestReadModel), typeof(TestReadModelProvider))
 			};
 		}
 

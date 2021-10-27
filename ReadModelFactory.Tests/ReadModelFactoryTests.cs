@@ -35,7 +35,7 @@ namespace ReadModelFactory.Tests
 		{
 			var catalogueItems = new List<ReadModelCatalogueItem>
 			{
-				new ReadModelCatalogueItem(typeof(TestReadModel), typeof(TestReadModelProvider))
+				new(typeof(TestReadModelArgs), typeof(TestReadModel), typeof(TestReadModelProvider))
 			};
 			return new ReadModelCatalogue(catalogueItems);
 		}
